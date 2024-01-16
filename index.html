@@ -58,6 +58,11 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/macpanel.styl.css">
+<link rel="stylesheet" href="/css/common.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
@@ -253,8 +258,8 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/11/07/0001/" target="_self">
-          <img src="/img/article/0001/default.png" srcset="/img/loading.gif" lazyload alt="桌面端科学上网教程">
+        <a href="/2023/11/07/0003/" target="_self">
+          <img src="/img/article/0001/default.png" srcset="/img/loading.gif" lazyload alt="机场使用教程">
         </a>
       </div>
     
@@ -262,6 +267,66 @@
       <h2 class="index-header">
         
           <i class="index-pin iconfont icon-top" title="Pin on top"></i>
+        
+        <a href="/2023/11/07/0003/" target="_self">
+          机场使用教程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/11/07/0003/" target="_self">
+        <div>
+          如果进入机场不会订阅，那就看这篇文章吧
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-07 10:23" pubdate>
+              2023-11-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/11/07/0001/" target="_self">
+          <img src="/img/article/0001/default.png" srcset="/img/loading.gif" lazyload alt="桌面端科学上网教程">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
         
         <a href="/2023/11/07/0001/" target="_self">
           桌面端科学上网教程
@@ -323,8 +388,6 @@
     <article class="col-12 col-md-8 mx-auto index-info">
       <h2 class="index-header">
         
-          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
-        
         <a href="/2023/11/07/0002/" target="_self">
           移动端科学上网教程
         </a>
@@ -334,68 +397,6 @@
       <a class="index-excerpt " href="/2023/11/07/0002/" target="_self">
         <div>
           Android IOS 端软件下载以及科学上网教程
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-07 10:23" pubdate>
-              2023-11-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/11/07/0003/" target="_self">
-          <img src="/img/article/0001/default.png" srcset="/img/loading.gif" lazyload alt="机场使用教程">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-          <i class="index-pin iconfont icon-top" title="Pin on top"></i>
-        
-        <a href="/2023/11/07/0003/" target="_self">
-          机场使用教程
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2023/11/07/0003/" target="_self">
-        <div>
-          如果进入机场不会订阅，那就看这篇文章吧
         </div>
       </a>
 
@@ -480,7 +481,38 @@
   </main>
 
   <footer>
-    <div class="footer-inner">
+    <div class="footer-inner"><div>
+  <span id="timeDate">正在载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("01/16/2024 00:00:00");
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "🫡本站已持续运行&nbsp"+dnum+"&nbsp天";  
+      document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+
   
   
     <div class="statistics">

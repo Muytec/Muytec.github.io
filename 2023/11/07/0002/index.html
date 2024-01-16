@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/img/article/0001/default.png">
 <meta property="article:published_time" content="2023-11-07T02:23:00.000Z">
-<meta property="article:modified_time" content="2024-01-16T04:41:11.686Z">
+<meta property="article:modified_time" content="2024-01-16T10:28:39.351Z">
 <meta property="article:author" content="小研">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://github.com/img/article/0001/default.png">
@@ -68,6 +68,11 @@
     <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
+
+
+  
+<link rel="stylesheet" href="/css/macpanel.styl.css">
+<link rel="stylesheet" href="/css/common.css">
 
 
 
@@ -241,7 +246,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-11-07 10:23" pubdate>
-          2023年11月7日 上午
+          2023年11月7日
         </time>
       </span>
     
@@ -257,15 +262,6 @@
       </span>
     
 
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          7 分钟
-        
-      </span>
     
 
     
@@ -310,21 +306,13 @@
           <article class="post-content mx-auto">
             <h1 id="seo-header">移动端科学上网教程</h1>
             
-              <p id="updated-time" class="note note-info" style="">
-                
-                  
-                    本文最后更新于 2024年1月16日 下午
-                  
-                
-              </p>
-            
             
               <div class="markdown-body">
                 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>VPN黑名单列表：老王VPN、极光VPN、蓝灯VPN、小牛VPN 黑洞加速器、旋风加速器、雷霆加速器、蜜蜂加速器都是换皮VPN，由国内某团队开发。于2021年八月份有人因使用旋风VPN受到行政处罚<br>用户使用的时候被ISP发现并上报的，已经有记录的就有极光加速器、QuickQ、佛跳墙加速器、老王VPN、IP精灵、旋风加速器、坚果加速器、蚂蚁加速器、快连VPN、神风加速器等。</p>
 <hr>
 <p>阅读本文章前我希望没有看过这两篇文章的去看一下文章：</p>
-<a class="btn" href="https://muytec.github.io/2023/11/07/桌面端科学上网教程/"  title="title" target="_blank">✈️桌面端科学上网教程</a>    <a class="btn" href="https://muytec.github.io/2023/11/07/机场使用教程/"  title="title" target="_blank">✈️机场使用教程</a> 
+<a class="btn" href="https://muytec.github.io/2023/11/07/0001/"  title="title" target="_blank">✈️桌面端科学上网教程</a>    <a class="btn" href="https://muytec.github.io/2023/11/07/0003/"  title="title" target="_blank">✈️机场使用教程</a> 
 
 
 <div class="note note-success">
@@ -411,6 +399,11 @@
           <div>2023年11月7日</div>
         </div>
       
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年1月16日</div>
+        </div>
       
       
         <div class="license-meta-item">
@@ -551,7 +544,38 @@
   </main>
 
   <footer>
-    <div class="footer-inner">
+    <div class="footer-inner"><div>
+  <span id="timeDate">正在载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("01/16/2024 00:00:00");
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "🫡本站已持续运行&nbsp"+dnum+"&nbsp天";  
+      document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+
   
   
     <div class="statistics">
