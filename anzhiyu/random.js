@@ -1,4 +1,4 @@
-var posts=["2023/11/07/0003/","2023/11/07/0001/"];function toRandomPost(){
+var posts=["2023/11/07/0001/","2023/11/07/0003/","2025/11/13/0004/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };var friend_link_list=[];
     var refreshNum = 1;
