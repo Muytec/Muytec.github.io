@@ -249,13 +249,14 @@ if (true) {
 .db-left { display: flex; flex-direction: column; gap: 12px; }
 .act-card { flex: 0 0 38%; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; border: none; padding: 15px 20px; justify-content: space-around; }
 .stat-card { flex: 1; justify-content: space-around; }
-.date-row { font-size: 1.8rem; font-weight: 900; line-height: 1; }
-.g-btn { padding: 5px 12px; border-radius: 8px; background: rgba(255,255,255,0.15); font-weight: bold; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+.date-row { font-size: 1.8rem; font-weight: 900; line-height: 1; text-align: center; margin-bottom: 5px; }
+.g-pick { display: flex; justify-content: center; gap: 15px; margin: 10px 0; }
+.g-btn { padding: 6px 16px; border-radius: 10px; background: rgba(255,255,255,0.1); font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
 .g-pick input { display: none; }
-.g-pick input:checked + .m { background: var(--m-c); box-shadow: 0 0 10px var(--m-c); }
-.g-pick input:checked + .f { background: var(--f-c); box-shadow: 0 0 10px var(--f-c); }
-#do-btn { width: 100%; padding: 10px; border-radius: 12px; border: none; background: white; color: var(--t-c); font-weight: 900; cursor: pointer; font-size: 0.9rem; transition: 0.3s; }
-#do-btn:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.g-pick input:checked + .m { background: var(--m-c); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); border-color: rgba(255,255,255,0.3); }
+.g-pick input:checked + .f { background: var(--f-c); box-shadow: 0 4px 12px rgba(251, 113, 133, 0.4); border-color: rgba(255,255,255,0.3); }
+#do-btn { width: 100%; padding: 12px; border-radius: 15px; border: none; background: white; color: var(--t-c); font-weight: 900; cursor: pointer; font-size: 0.95rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+#do-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 .db-mid { justify-content: flex-start; padding: 15px 20px; }
 .cal-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: bold; font-size: 0.9rem; }
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; flex: 1; align-content: flex-start; } 
@@ -278,8 +279,17 @@ if (true) {
 .s-line { display: flex; justify-content: space-between; font-size: 0.85rem; }
 .clash-bar { height: 7px; border-radius: 3.5px; overflow: hidden; display: flex; margin-top: 5px; }
 @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
-@media (max-width: 1000px) { .db-main { grid-template-columns: 1fr; height: auto; } }
-</style><div id="checkin-dashboard"><div class="ci-banner" style="background-image: url('/img/indeximg/checkin.png') !important"><div class="ci-banner-mask"><div class="ci-banner-inner"><span class="ci-badge">FOR BETTER SELF</span><h1 class="ci-title">戒色打卡！</h1><p class="ci-desc" id="ci-slogan"></p></div></div></div><div class="db-main"><div class="db-left"><div class="db-card act-card"><div class="date-row" id="d-str"></div><div class="g-pick" style="display:flex; gap:10px;"><label style="flex:1"><input type="radio" name="gender" value="男" checked><span class="g-btn m">♂ 机长</span></label><label style="flex:1"><input type="radio" name="gender" value="女"><span class="g-btn f">♀ 矿长</span></label></div><button id="do-btn" onclick="doCheckin()">⚡ 立即打卡</button></div><div class="db-card stat-card"><div class="s-title" id="s-t">今日数据看板</div><div class="s-line"><span>总人数</span><span id="tot-v">0</span></div><div class="s-line"><span>机长</span><span id="m-v" style="color:var(--m-c)">0</span></div><div class="s-line"><span>矿长</span><span id="f-v" style="color:var(--f-c)">0</span></div><div class="clash-bar"><div class="clash-m" id="c-m"></div><div class="clash-f" id="c-f"></div></div><div id="b-td" onclick="viewDate(new Date().toISOString().split('T')[0])" style="display:none; font-size:10px; text-align:center; margin-top:10px; cursor:pointer; opacity:0.6;">返回今日</div></div></div><div class="db-card db-mid"><div class="cal-nav"><span style="cursor:pointer;opacity:0.4" onclick="chM(-1)">❮</span><span id="cal-t"></span><span style="cursor:pointer;opacity:0.4" onclick="chM(1)">❯</span></div><div class="cal-grid" style="text-align:center; font-size:0.75rem; opacity:0.4; margin-bottom:10px;"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-grid" id="cal-d-g"></div></div><div class="db-card db-right"><div class="s-title" id="wall-t">🌊 实时动态</div><div class="stream-wall" id="wall"></div></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div></div><div id="twikoo"></div></div><script src="https://cdn.staticfile.org/twikoo/1.6.31/twikoo.all.min.js"></script><script>const E = 'https://muytecbolgcomments.vercel.app/';
+@media (max-width: 1000px) { 
+  .db-main { grid-template-columns: 1fr; height: auto; } 
+  .ci-banner { height: 180px; border-radius: 16px; }
+  .ci-banner-mask { padding: 0 20px; }
+  .ci-title { font-size: 2.2rem; margin: 5px 0; }
+  .ci-badge { font-size: 0.7rem; letter-spacing: 2px; }
+  .ci-desc { font-size: 0.85rem; }
+  .db-card { border-radius: 12px; }
+  .date-row { font-size: 1.5rem; }
+}
+</style><div id="checkin-dashboard"><div class="ci-banner" style="background-image: url('/img/indeximg/checkin.png') !important"><div class="ci-banner-mask"><div class="ci-banner-inner"><span class="ci-badge">FOR BETTER SELF</span><h1 class="ci-title">戒色打卡！</h1><p class="ci-desc" id="ci-slogan"></p></div></div></div><div class="db-main"><div class="db-left"><div class="db-card act-card"><div class="date-row" id="d-str"></div><div class="g-pick"><label><input type="radio" name="gender" value="男" checked><span class="g-btn m">♂ 机长</span></label><label><input type="radio" name="gender" value="女"><span class="g-btn f">♀ 矿长</span></label></div><button id="do-btn" onclick="doCheckin()">⚡ 立即打卡</button></div><div class="db-card stat-card"><div class="s-title" id="s-t">今日数据看板</div><div class="s-line"><span>总人数</span><span id="tot-v">0</span></div><div class="s-line"><span>机长</span><span id="m-v" style="color:var(--m-c)">0</span></div><div class="s-line"><span>矿长</span><span id="f-v" style="color:var(--f-c)">0</span></div><div class="clash-bar"><div class="clash-m" id="c-m"></div><div class="clash-f" id="c-f"></div></div><div id="b-td" onclick="viewDate(new Date().toISOString().split('T')[0])" style="display:none; font-size:10px; text-align:center; margin-top:10px; cursor:pointer; opacity:0.6;">返回今日</div></div></div><div class="db-card db-mid"><div class="cal-nav"><span style="cursor:pointer;opacity:0.4" onclick="chM(-1)">❮</span><span id="cal-t"></span><span style="cursor:pointer;opacity:0.4" onclick="chM(1)">❯</span></div><div class="cal-grid" style="text-align:center; font-size:0.75rem; opacity:0.4; margin-bottom:10px;"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-grid" id="cal-d-g"></div></div><div class="db-card db-right"><div class="s-title" id="wall-t">🌊 实时动态</div><div class="stream-wall" id="wall"></div></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div></div><div id="twikoo"></div></div><script src="https://cdn.staticfile.org/twikoo/1.6.31/twikoo.all.min.js"></script><script>const E = 'https://muytecbolgcomments.vercel.app/';
 let cY = new Date().getFullYear(), cM = new Date().getMonth();
 let cache = {}, all = [];
 const slogans = ["戒色先戒心，心定则色不扰。","每一个不曾起舞的日子，都是对生命的辜负。","自律即自由，坚持成就更好的自己。","少年强则国强，少年精则气足。","欲火焚身，莫如心如止水。","知足常乐，清心寡欲。","志存高远，不溺儿女私情。"];
