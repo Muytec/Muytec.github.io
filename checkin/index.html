@@ -356,6 +356,16 @@ if (true) {
 
   async function init() {
     console.log('Checkin Dashboard Initializing...');
+    
+    // 核心修复：PJAX 切换后强制重新初始化 Twikoo 评论框
+    if (typeof twikoo !== 'undefined' && document.getElementById('twikoo')) {
+      twikoo.init({ 
+        envId: 'https://muytecbolgcomments.vercel.app/', 
+        el: '#twikoo', 
+        region: '日本' 
+      });
+    }
+
     // 清理可能存在的旧定时器
     if(sloganTimer) clearInterval(sloganTimer);
     sloganTimer = setInterval(rotateSlogan, 6000);
