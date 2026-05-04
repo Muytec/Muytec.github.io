@@ -1,4 +1,4 @@
-var posts=["2025/11/23/note0003/","2025/12/11/software0002/","2025/11/28/note0004/","2023/11/07/note0002/","2023/11/07/note0001/","2025/11/13/software0001/"];function toRandomPost(){
+var posts=["2023/11/07/note0001/","2025/11/28/note0004/","2025/11/13/software0001/","2025/11/23/note0003/","2025/12/11/software0002/","2023/11/07/note0002/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };var friend_link_list=[];
     var refreshNum = 1;
