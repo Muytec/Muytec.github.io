@@ -384,6 +384,9 @@ if (true) {
       const raw = res.data || [];
       all = raw.filter(c => c.comment.includes('@打卡'));
       
+      // 【调试】打印第一条原始记录，确认 API 字段名（部署稳定后可删除此行）
+      if (all.length > 0) console.log('[Checkin Debug] 第一条打卡记录原始字段:', JSON.stringify(Object.keys(all[0])), '\nmailMd5 值:', all[0].mailMd5, '\navatar 值:', all[0].avatar);
+
       userMap = buildUserStats(all);
       cache = process(all);
       
@@ -441,7 +444,8 @@ if (true) {
     });
     Object.values(users).forEach(u => {
       u.total = u.dates.size;
-      u.avatar = u.mailMd5 ? `https://cravatar.cn/avatar/${u.mailMd5}?s=64` : 'https://cravatar.cn/avatar/default?s=64';
+      // 使用 ?d=identicon 与 Twikoo 评论区保持一致，确保头像正常显示
+      u.avatar = u.mailMd5 ? `https://cravatar.cn/avatar/${u.mailMd5}?d=identicon` : `https://cravatar.cn/avatar/?d=identicon`;
       const ds = Array.from(u.dates).sort();
       let curr = 0, lastD = null;
       ds.forEach(d => {
@@ -509,7 +513,8 @@ if (true) {
           nickHtml = `<span class="bi-nick-main bi-hl">${nick}</span>`;
       }
 
-      const avatar = c.mailMd5 ? `https://cravatar.cn/avatar/${c.mailMd5}?s=64` : 'https://cravatar.cn/avatar/default?s=64';
+      // 动态墙头像同样使用 ?d=identicon
+      const avatar = c.mailMd5 ? `https://cravatar.cn/avatar/${c.mailMd5}?d=identicon` : `https://cravatar.cn/avatar/?d=identicon`;
       item.innerHTML = `<img class="bi-avatar" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="${avatar}"><div class="bi-body"><div class="bi-head">${nickHtml}<span class="bi-tag" style="background:${isF?'var(--f-c)':'var(--m-c)'}">${isF?'矿长':'机长'}</span><span class="bi-time">${timeStr}</span></div><div class="bi-content">${c.comment.replace(/@打卡#(男|女)/g,'').trim() || '打卡第一天'}</div></div>`;
       w.appendChild(item);
     });
