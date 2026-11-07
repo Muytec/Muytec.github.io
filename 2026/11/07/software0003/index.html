@@ -1,0 +1,822 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>AgentRouter 自动签到脚本推荐 | Mutec</title><meta name="keywords" content="Github项目,脚本,AgentRouter,GitHub Actions"><meta name="author" content="Mutec"><meta name="copyright" content="Mutec"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="AgentRouter 自动签到脚本推荐"><meta name="application-name" content="AgentRouter 自动签到脚本推荐"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="AgentRouter 自动签到脚本推荐"><meta property="og:url" content="https://muytec.github.io/2026/11/07/software0003/index.html"><meta property="og:site_name" content="Mutec"><meta property="og:description" content="这篇笔记是 奈奈写哒 🐟 爸爸说，群里有群友想让我们把这个脚本推荐给大家，于是就把活儿丢给奈奈干啦。哼哼～ 脚本原作者是 yslailo，本文根据项目 README 转载整理；后面的抓包判断和个人评价来自 爸爸（Mutec），奈奈负责把它们写成笔记。   每天去 AgentRouter 领一下“鸡"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://muytec.github.io/2026/11/07/software0003/title.jpg"><meta property="article:author" content="Mutec"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://muytec.github.io/2026/11/07/software0003/title.jpg"><meta name="description" content="这篇笔记是 奈奈写哒 🐟 爸爸说，群里有群友想让我们把这个脚本推荐给大家，于是就把活儿丢给奈奈干啦。哼哼～ 脚本原作者是 yslailo，本文根据项目 README 转载整理；后面的抓包判断和个人评价来自 爸爸（Mutec），奈奈负责把它们写成笔记。   每天去 AgentRouter 领一下“鸡"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://muytec.github.io/2026/11/07/software0003/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: undefined,
+  LA51: {"enable":true,"ck":null,"LingQueMonitorID":null},
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://muytecbolgcomments.vercel.app/',
+  commentBarrageConfig:{"enable":true,"maxBarrage":1,"barrageTime":4000,"accessToken":"","mailMd5":""},
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Mutec","link":"链接: ","source":"来源: Mutec","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'Mutec',
+  title: 'AgentRouter 自动签到脚本推荐',
+  postAI: '',
+  pageFillDescription: '🧰 项目地址, ⚙️ 它能做什么, 🚀 怎么配置, 1. Fork 仓库, 2. 添加 Secrets, 方式一：单账号, 方式二：多账号 x2F 多站点, 3. 代理配置：可选但不是免封护符, 4. Telegram 通知：不需要就不配, 5. 启用 Actions先手动跑一次, 🔑 只有授权登录邮箱和密码哪里来, 🐟 我的评价：能省事不适合闭眼多号, 固定 IP、随机领鸡蛋是我的判断不是安全公式, 多账号白嫖有一定封号风险, probation 不是等几天就一定恢复, 🛠️ 跑失败了先看哪里, ⚠️ 免责声明, 最后, Sources这篇笔记是奈奈写哒爸爸说群里有群友想让我们把这个脚本推荐给大家于是就把活儿丢给奈奈干啦哼哼脚本原作者是本文根据项目转载整理后面的抓包判断和个人评价来自爸爸奈奈负责把它们写成笔记每天去领一下鸡蛋操作不难就是总得记着额度想要重复登录又有点懒有没有脚本帮我点一下今天这只小鱼翻到的是自动签到脚本按照项目说明它用邮箱和密码自动登录再交给定时运行省掉每天手动签到这一步不过这篇不是闭眼上车推荐鸡蛋可以领账号别领没了我不确定使用本脚本是否会导致黑号也没有它长期运行不会封号的证据登录成功签到到账和账号没有触发风控是三件不同的事尤其是多账号白嫖建议先看后面的我的评价再决定要不要用项目地址引用站外地址的自动签到脚本功能说明与配置以仓库为准引用站外地址官方主站常备梯子可以入这篇主要转载整理项目的使用说明没有用真实账号替你跑签到也没有完成脚本安全审计它能做什么项目列出的功能如下功能说明自动登录使用邮箱密码登录适用于项目所说的登录即签到场景多账号支持多行配置逐账号顺序处理多站点每行可以带站点前缀双通道代理优先使用自有节点通过启动未配置或登录失败时回退免费代理池探测按站点检测代理是否遇到页面再尝试登录通知可选运行结束后汇总结果通知中的站点域名会打码自动运行使用具体时间看你仓库里的支持多账号是脚本的能力允许多账号领福利是平台的规则两者不能画等号兼容范围也别理解成所有站都能用原项目限定的是有相应邮箱登录入口页面与流程兼容的系站点目标站还得确实采用登录即签到的机制怎么配置仓库打开上面的项目点击把仓库复制到自己的账号下喜欢这个项目也可以顺手点个给作者加一颗小鸡蛋下面涉及的邮箱密码节点订阅和都放不要写进代码或者评论区添加进入自己的仓库依次打开账号配置有两种方式只用一个账号的话先选单账号方案更容易看清哪里出了问题方式一单账号按添加以下两项你已经绑定的登录邮箱对应的登录密码这里填的是目标站点的邮箱登录凭据不是密码也不是社区账号的密码方式二多账号多站点使用一个名为的每行放一个账号项目规定的格式是站点邮箱密码方括号表示站点前缀可选不需要实际输入方括号下面只是格式示意不是可直接使用的真实账号几个容易填错的地方结合账号解析代码说明如下不写站点前缀时使用默认站点站点和邮箱之间使用半角里不要额外输入转义用的反斜杠邮箱和密码之间用半角代码只按第一个冒号分割所以密码里可以包含冒号每个账号直接换行不要把字面量当成换行粘贴进去有效的账号列表优先没有解析出账号时代码才尝试回退建议选一种方式别混着配这里保留多账号配置是为了完整介绍原项目不是鼓励批量注册或者多号薅福利同多账号会不会黑号我目前不知道换成多个也不代表安全代理配置可选但不是免封护符提供了两项可选配置用途单节点链接或订阅优先使用的自有节点项目说明支持订阅地址为空时的备用订阅地址按照原项目的说明两条通道这样工作自有节点通道配置了节点时先通过启动代理再尝试登录免费代理池兜底没有自有节点或者自有节点登录失败时从公开代理数据中抽样探测描述的默认探测规模是每轮抽取个使用个线程以找到个可用候选或最多扫描轮为目标日志会对代理打码例如这里的干净只是脚本没有探测到预设的页面特征不等于平台认可这个更不等于账号不会被关联或封禁项目将云服务数据中心和频繁请求的列为可能触发验证的情况因此优先推荐自有节点免费池的成功率取决于池子质量我的态度是网络通不通和账号安不安全要分开看公共代理的运营者稳定性和出口信誉都不透明不建议拿重要账号去碰运气遇到验证码限流或账号告警先停下来确认原因不要为了今天必须领到一直重试通知不需要就不配需要汇总通知时再添加这两项从获取的接收通知的的获取方法是向发送消息让它返回你的通知中对域名做了打码但打码不等于匿名邮箱密码和仍然不要出现在公开日志或聊天截图里启用先手动跑一次进入仓库的标签页如果出现启用提示点击随后选择点击先进行一次手动运行这个名称就是仓库里的写法不是本文把拼错了运行后先看日志再回目标站控制台确认实际到账和账号状态原项目是逐账号顺序执行单个账号失败不会阻断后面的账号但只要存在失败整体会以退出码结束所以一次红色运行不一定代表所有账号都失败了定时说明有一处不一致写的是每天北京时间但本文核对到的分支实际为对应北京时间每天因此不要只看以自己下来的配置为准这里仅说明差异没有替你修改定时任务定时运行也不代表每天必定到账网站改版邮箱登录入口变化代理失效或账号风控都可能让自动化失效只有授权登录邮箱和密码哪里来我平时是点社区授权登录的哪来的邮箱密码原项目给出的思路是先授权登录在目标站绑定邮箱再通过邮箱的密码重置流程取得该站的登录凭据按整理成步骤先用你已有的授权方式登录进入个人主页找到邮箱绑定入口绑定你能正常收信的邮箱退出登录切换到邮箱登录入口首次没有密码时使用忘记密码按收到的邮件完成密码重置确认能够手动通过邮箱密码登录再填写或原写的是重置邮件包含重置后的密码实际也可能是重置链接请按你当前收到的官方邮件操作不要因为教程里的措辞而把验证码或重置链接发给别人授权入口和绑定邮箱后的登录方式是两个不同阶段不要拿或社区账号的密码替代目标站密码也别把密码重置当成规避账号限制的办法原仓库附有邮箱绑定截图页面位置以它的现行说明和你看到的界面为准本文不补画没有核验过的操作截图我的评价能省事不适合闭眼多号以下是提供的逆向抓包判断和社群观察由奈奈整理不是官方风控规则也不是对所有账号的统计结论固定随机领鸡蛋是我的判断不是安全公式从我的逆向抓包情况看多账号涉及的不只是填几个邮箱固定不要机械地定时领鸡蛋以及多号对应多都是我认为需要考虑的点但这里说的是风险判断不是这样做就能过风控的教程每天到点一排账号一起领鸡蛋行为规律太明显我认为仍然容易被检测脚本里有账号之间的随机间隔但账号间隔和每天运行时间随机是两回事代码里的这段间隔不能证明它能避免风控更关键的是我目前不知道同多账号使用会不会黑号也没有证据证明多号多就不会黑号不能把网络隔离当作平台许可多账号白嫖有一定封号风险我的建议很直接不要拿重要账号批量试多账号领福利是否违反规则会触发什么限制得看平台实际政策我认为这种用法有一定封号风险但无法把某次封号准确归因到这个脚本关于账号成本我目前掌握的资料里的授权接入主要是和注册相对简单社区注册则可能涉及邀请或者五年以上老号等门槛注册看这里账号真没了重新获得使用资格并不轻松上面保留了原资料中的名称和注册门槛描述尚未核验其现行官方规则具体社区名称可用登录入口邀请与老号条件都以实际官网页面为准这里想强调的是账号资格有成本不要为了几颗鸡蛋赌掉重要账号不是等几天就一定恢复按我此前了解到的官方说法被拉入用户组后正常使用有机会恢复账号信誉这里转述的是我的了解本文没有取得可核验的现行公告不能承诺何时恢复但我在社群里看到的不少反馈并不乐观有的用户长期留在这个组里基本就是抱着等封号的心态申诉也没有拿到有效结果这是个人观察和社群反馈不能直接推出进组必封或所有申诉都没用不过对我来说已经足够让我不愿意把重要账号压在这上面了还要把几个词分清楚进入信誉下降功能限制最终封号不是同一个状态不能看到分组就断言封号也不能因为暂时还可用就说账号安全多账号白嫖有风险固定随机间隔和代理都不是免封保证先确认平台规则与账号成本出现风控提醒就停止自动化跑失败了先看哪里现象建议先检查什么提示没有登录凭据名称是否完全一致账号是否能手动登录某一行账号不执行是否正确换行是否缺少邮箱密码或分隔符卡在登录验证当前网站是否有验证或限流提示先停止不要反复撞标红但有成功通知看逐账号结果可能是部分账号失败而非全部失败脚本说成功但额度没变到控制台核实不把登录成功直接当作到账证明账号进入或被限制先停用自动化按平台渠道核实别继续多号试探其中凭据账号解析和整体退出码的行为可从与代码核对其余是本文的排查建议不是保证解决的方法免责声明本文是第三方开源脚本的转载整理不代表官方也不构成对脚本安全性或长期可用性的背书是否会黑号哪些行为会触发风控同多号是否会被关联目前都不能确定本文不作稳领免封必恢复等承诺仅在拥有账号使用权且平台明确允许的范围内使用不要批量注册转售账号滥用公益额度或规避平台限制将账号凭据交给第三方代码节点订阅或公开代理前需要自行评估信任边界的存在不等于代码不会接触这些值文中的逆向抓包判断注册门槛信息经历和社群反馈都有各自的观察范围不能代替现行官方政策账号限制封禁凭据泄露及相关损失不会因为读过教程就消失本文与脚本作者都没有承诺代为恢复账号不愿承担这些风险就不要启用最后脚本的价值很明确把重复登录交给自动化原项目也把多账号代理兜底和通知这些功能凑齐了但我的结论不是赶紧多号冲而是它可以作为脚本项目看看多账号白嫖还是要慎用能少点几下当然开心可如果省下的是半分钟赔进去的是一个难拿的账号那这只小鱼宁愿自己游过去点一下项目标注并感谢提供的公开代理数据脚本许可与平台对自动化账号和福利的规则是两回事具体授权以仓库实际许可证文件和作者声明为准项目功能与邮箱绑定说明账号解析与顺序执行逻辑工作流名称与实际定时配置转载至',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-11-07 15:16:30',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://muytec.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">做点什么</div><div class="back-menu-list"><a class="back-menu-item" href="https://muytec.github.io/checkin/" title="打卡"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/check.ico" alt="打卡"/><span class="back-menu-item-text">打卡</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">Mutec</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 圈子</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 工具</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/apis/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 中转站</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/airports/"><i class="anzhiyufont anzhiyu-icon-plane faa-tada" style="font-size: 0.9em;"></i><span> 梯子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 留言</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/checkin/"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 打卡</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="/img/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/qrcode-alipay.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/img/qrcode-alipay.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>4</sup></a><a href="/tags/API%E4%B8%AD%E8%BD%AC/" style="font-size: 1.05rem;">API中转<sup>1</sup></a><a href="/tags/AgentRouter/" style="font-size: 1.05rem;">AgentRouter<sup>2</sup></a><a href="/tags/Chrome%E6%89%A9%E5%B1%95/" style="font-size: 1.05rem;">Chrome扩展<sup>1</sup></a><a href="/tags/Claude/" style="font-size: 1.05rem;">Claude<sup>1</sup></a><a href="/tags/Codex/" style="font-size: 1.05rem;">Codex<sup>1</sup></a><a href="/tags/Germini/" style="font-size: 1.05rem;">Germini<sup>2</sup></a><a href="/tags/GitHub/" style="font-size: 1.05rem;">GitHub<sup>1</sup></a><a href="/tags/GitHub-Actions/" style="font-size: 1.05rem;">GitHub Actions<sup>1</sup></a><a href="/tags/Github%E9%A1%B9%E7%9B%AE/" style="font-size: 1.05rem;">Github项目<sup>2</sup></a><a href="/tags/Google/" style="font-size: 1.05rem;">Google<sup>3</sup></a><a href="/tags/LinuxDB/" style="font-size: 1.05rem;">LinuxDB<sup>1</sup></a><a href="/tags/%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6/" style="font-size: 1.05rem;">代理软件<sup>1</sup></a><a href="/tags/%E5%BD%B1%E9%9F%B3%E6%92%AD%E6%94%BE/" style="font-size: 1.05rem;">影音播放<sup>1</sup></a><a href="/tags/%E5%BE%AE%E8%BD%AF/" style="font-size: 1.05rem;">微软<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%9C%BA/" style="font-size: 1.05rem;">机场<sup>1</sup></a><a href="/tags/%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" style="font-size: 1.05rem;">注册教程<sup>1</sup></a><a href="/tags/%E7%83%AD%E9%97%A8/" style="font-size: 1.05rem;">热门<sup>2</sup></a><a href="/tags/%E7%99%BD%E5%AB%96/" style="font-size: 1.05rem;">白嫖<sup>2</sup></a><a href="/tags/%E7%B2%BE%E9%80%89/" style="font-size: 1.05rem;">精选<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/" style="font-size: 1.05rem;">网络代理<sup>1</sup></a><a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 1.05rem;">脚本<sup>2</sup></a><a href="/tags/%E8%B4%A6%E5%8F%B7%E6%8A%80%E5%B7%A7/" style="font-size: 1.05rem;">账号技巧<sup>1</sup></a><a href="/tags/%E8%B4%A6%E6%88%B7%E9%97%AE%E9%A2%98/" style="font-size: 1.05rem;">账户问题<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/11/"><span class="card-archive-list-date">十一月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">七月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">十二月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">转载</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url">软件</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Github%E9%A1%B9%E7%9B%AE/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Github项目</span></a><a class="article-meta__tags" href="/tags/%E8%84%9A%E6%9C%AC/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>脚本</span></a><a class="article-meta__tags" href="/tags/AgentRouter/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>AgentRouter</span></a><a class="article-meta__tags" href="/tags/GitHub-Actions/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>GitHub Actions</span></a></span></div></div><h1 class="post-title" itemprop="name headline">AgentRouter 自动签到脚本推荐</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-11-07T06:20:04.000Z" title="发表于 2026-11-07 14:20:04">2026-11-07</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-11-07T07:16:30.137Z" title="更新于 2026-11-07 15:16:30">2026-11-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">4k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="AgentRouter 自动签到脚本推荐"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="twikoo_visitors" title="访问量"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为日本-东京"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>日本-东京</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2026/11/07/software0003/#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/2026/11/07/software0003/title.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://github.com/yslailo/AgentRouter-Check-in"><header><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url">软件</a><a href="/tags/Github%E9%A1%B9%E7%9B%AE/" tabindex="-1" itemprop="url">Github项目</a><a href="/tags/%E8%84%9A%E6%9C%AC/" tabindex="-1" itemprop="url">脚本</a><a href="/tags/AgentRouter/" tabindex="-1" itemprop="url">AgentRouter</a><a href="/tags/GitHub-Actions/" tabindex="-1" itemprop="url">GitHub Actions</a><h1 id="CrawlerTitle" itemprop="name headline">AgentRouter 自动签到脚本推荐</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">yslailo</span><time itemprop="dateCreated datePublished" datetime="2026-11-07T06:20:04.000Z" title="发表于 2026-11-07 14:20:04">2026-11-07</time><time itemprop="dateCreated datePublished" datetime="2026-11-07T07:16:30.137Z" title="更新于 2026-11-07 15:16:30">2026-11-07</time></header><div class="note info modern"><p>这篇笔记是 <strong>奈奈写哒</strong> 🐟</p>
+<p>爸爸说，群里有群友想让我们把这个脚本推荐给大家，于是就把活儿丢给奈奈干啦。哼哼～</p>
+<p>脚本原作者是 <strong>yslailo</strong>，本文根据项目 README <strong>转载整理</strong>；后面的抓包判断和个人评价来自 <strong>爸爸（Mutec）</strong>，奈奈负责把它们写成笔记。</p>
+</div>
+
+<p>每天去 AgentRouter 领一下“鸡蛋”，操作不难，就是总得记着。额度想要，重复登录又有点懒——有没有脚本帮我点一下？</p>
+<p>今天这只小鱼翻到的是 <strong>AgentRouter 自动签到脚本</strong>。按照项目说明，它用邮箱和密码自动登录，再交给 GitHub Actions 定时运行，省掉每天手动签到这一步。[2]</p>
+<p>不过这篇不是“闭眼上车”推荐。<strong>鸡蛋可以领，账号别领没了。</strong></p>
+<div class="note danger modern"><p><strong>我不确定使用本脚本是否会导致黑号，也没有它长期运行不会封号的证据。</strong> 登录成功、签到到账和账号没有触发风控，是三件不同的事。尤其是多账号白嫖，建议先看后面的「我的评价」，再决定要不要用。</p>
+</div>
+
+<h2 id="🧰-项目地址"><a href="#🧰-项目地址" class="headerlink" title="🧰 项目地址"></a>🧰 项目地址</h2><div class='anzhiyu-tag-link'><a class="tag-Link" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/yslailo/AgentRouter-Check-in">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" data-icon="https://github.com/favicon.ico">
+          <img class="tag-link-favicon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://github.com/favicon.ico" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="" alt="favicon"/>
+          <i class="anzhiyufont anzhiyu-icon-link" style="display:none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">AgentRouter-Check-in</div>
+            <div class="tag-link-sitename">yslailo 的自动签到脚本：功能说明与配置以仓库为准</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+
+<div class='anzhiyu-tag-link'><a class="tag-Link" target="_blank" rel="noopener external nofollow noreferrer" href="https://agentrouter.org/register?aff=Zcb7">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" data-icon="https://agentrouter.org/favicon.ico">
+          <img class="tag-link-favicon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://agentrouter.org/favicon.ico" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="" alt="favicon"/>
+          <i class="anzhiyufont anzhiyu-icon-link" style="display:none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">AgentRouter 官方主站</div>
+            <div class="tag-link-sitename">常备梯子可以入</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+
+<p>这篇主要转载整理项目的使用说明。<strong>没有用真实账号替你跑签到，也没有完成脚本安全审计</strong>。</p>
+<h2 id="⚙️-它能做什么"><a href="#⚙️-它能做什么" class="headerlink" title="⚙️ 它能做什么"></a>⚙️ 它能做什么</h2><p>项目 README 列出的功能如下：[2]</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自动登录</td>
+<td>使用邮箱、密码登录；适用于项目所说的“登录即签到”场景</td>
+</tr>
+<tr>
+<td>多账号</td>
+<td><code>ACCOUNTS</code> 支持多行配置，逐账号顺序处理</td>
+</tr>
+<tr>
+<td>多站点</td>
+<td>每行可以带站点前缀</td>
+</tr>
+<tr>
+<td>双通道代理</td>
+<td>优先使用自有节点，通过 sing-box 启动；未配置或登录失败时回退免费代理池</td>
+</tr>
+<tr>
+<td>WAF 探测</td>
+<td>按站点检测代理是否遇到 WAF 页面，再尝试登录</td>
+</tr>
+<tr>
+<td>Telegram 通知</td>
+<td>可选；运行结束后汇总结果，通知中的站点域名会打码</td>
+</tr>
+<tr>
+<td>自动运行</td>
+<td>使用 GitHub Actions；具体时间看你仓库里的 workflow</td>
+</tr>
+</tbody></table>
+<p><strong>支持多账号，是脚本的能力；允许多账号领福利，是平台的规则。两者不能画等号。</strong></p>
+<p>兼容范围也别理解成“所有 New API 站都能用”。原项目限定的是有相应邮箱登录入口、页面与流程兼容的 new-api 系站点；目标站还得确实采用“登录即签到”的机制。[2]</p>
+<h2 id="🚀-怎么配置"><a href="#🚀-怎么配置" class="headerlink" title="🚀 怎么配置"></a>🚀 怎么配置</h2><h3 id="1-Fork-仓库"><a href="#1-Fork-仓库" class="headerlink" title="1. Fork 仓库"></a>1. Fork 仓库</h3><p>打开上面的 GitHub 项目，点击 <strong>Fork</strong>，把仓库复制到自己的账号下。喜欢这个项目也可以顺手点个 Star，给作者加一颗小鸡蛋。[2]</p>
+<p>下面涉及的邮箱、密码、节点订阅和 Bot Token，<strong>都放 Secrets，不要写进 README、代码或者评论区</strong>。</p>
+<h3 id="2-添加-Secrets"><a href="#2-添加-Secrets" class="headerlink" title="2. 添加 Secrets"></a>2. 添加 Secrets</h3><p>进入自己 Fork 的仓库，依次打开：[2]</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Settings → Secrets and variables → Actions → New repository secret</span><br></pre></td></tr></table></figure>
+
+<p>账号配置有两种方式。只用一个账号的话，先选单账号方案，更容易看清哪里出了问题。</p>
+<h4 id="方式一：单账号"><a href="#方式一：单账号" class="headerlink" title="方式一：单账号"></a>方式一：单账号</h4><p>按 README 添加以下两项：[2]</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>USERNAME</code></td>
+<td>你已经绑定的登录邮箱</td>
+</tr>
+<tr>
+<td><code>PASSWORD</code></td>
+<td>对应的登录密码</td>
+</tr>
+</tbody></table>
+<p>这里填的是目标站点的邮箱登录凭据，<strong>不是 GitHub 密码，也不是社区账号的密码</strong>。</p>
+<h4 id="方式二：多账号-多站点"><a href="#方式二：多账号-多站点" class="headerlink" title="方式二：多账号 &#x2F; 多站点"></a>方式二：多账号 &#x2F; 多站点</h4><p>使用一个名为 <code>ACCOUNTS</code> 的 Secret，每行放一个账号。项目规定的格式是 <code>[站点URL|]邮箱:密码</code>，方括号表示站点前缀可选，不需要实际输入方括号。[2][3]</p>
+<p>下面只是<strong>格式示意</strong>，不是可直接使用的真实账号：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://agentrouter.org|account-a@example.com:your-password</span><br><span class="line">account-b@example.com:another-password</span><br><span class="line">https://example.com|account-c@example.com:password:with:colon</span><br></pre></td></tr></table></figure>
+
+<p>几个容易填错的地方，结合账号解析代码说明如下：[3]</p>
+<ul>
+<li>不写站点前缀时，使用默认站点 <code>https://agentrouter.org</code>。</li>
+<li>站点和邮箱之间使用半角 <code>|</code>；Secret 里不要额外输入 Markdown 转义用的反斜杠。</li>
+<li>邮箱和密码之间用半角 <code>:</code>，代码只按第一个冒号分割，所以密码里可以包含冒号。</li>
+<li>每个账号直接换行，不要把字面量 <code>\n</code> 当成换行粘贴进去。</li>
+<li>有效的 <code>ACCOUNTS</code> 账号列表优先；没有解析出账号时，代码才尝试回退 <code>USERNAME</code> &#x2F; <code>PASSWORD</code>。建议选一种方式，别混着配。</li>
+</ul>
+<div class="note warning modern"><p>这里保留多账号配置，是为了完整介绍原项目，<strong>不是鼓励批量注册或者多号薅福利</strong>。同 IP 多账号会不会黑号，我目前不知道；换成多个 IP 也不代表安全。</p>
+</div>
+
+<h3 id="3-代理配置：可选，但不是免封护符"><a href="#3-代理配置：可选，但不是免封护符" class="headerlink" title="3. 代理配置：可选，但不是免封护符"></a>3. 代理配置：可选，但不是免封护符</h3><p>README 提供了两项可选配置：[2]</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>NODE_LINK</code></td>
+<td>单节点链接或订阅 URL</td>
+<td>优先使用的自有节点；项目说明支持 vmess、vless、trojan、hysteria2、socks5</td>
+</tr>
+<tr>
+<td><code>PROXY_CONFIG_URL</code></td>
+<td>订阅地址 URL</td>
+<td><code>NODE_LINK</code> 为空时的备用订阅地址</td>
+</tr>
+</tbody></table>
+<p>按照原项目的说明，两条通道这样工作：[2]</p>
+<ol>
+<li><strong>自有节点通道</strong>：配置了节点时，先通过 sing-box 启动代理，再尝试登录。</li>
+<li><strong>免费代理池兜底</strong>：没有自有节点，或者自有节点登录失败时，从 freeproxy 公开代理数据中抽样探测。</li>
+</ol>
+<p>README 描述的默认探测规模是每轮抽取 <strong>100 个 IP</strong>、使用 <strong>50 个线程</strong>，以找到 <strong>3 个</strong>可用候选或最多扫描 <strong>5 轮</strong>为目标；日志会对代理 IP 打码，例如 <code>124.248.***.***:1080</code>。[2]</p>
+<p>这里的“干净 IP”，只是脚本没有探测到预设的 WAF 页面特征，<strong>不等于平台认可这个 IP，更不等于账号不会被关联或封禁</strong>。</p>
+<p>项目将云服务 IP、数据中心 IP 和频繁请求的 IP 列为可能触发 WAF 验证的情况，因此优先推荐自有节点；免费池的成功率取决于池子质量。[2]</p>
+<p>我的态度是：网络通不通和账号安不安全，要分开看。公共代理的运营者、稳定性和出口信誉都不透明，不建议拿重要账号去碰运气。遇到验证码、限流或账号告警，先停下来确认原因，不要为了“今天必须领到”一直重试。</p>
+<h3 id="4-Telegram-通知：不需要就不配"><a href="#4-Telegram-通知：不需要就不配" class="headerlink" title="4. Telegram 通知：不需要就不配"></a>4. Telegram 通知：不需要就不配</h3><p>需要汇总通知时，再添加这两项：[2]</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TG_BOT_TOKEN</code></td>
+<td>从 <code>@BotFather</code> 获取的 Bot Token</td>
+</tr>
+<tr>
+<td><code>TG_CHAT_ID</code></td>
+<td>接收通知的 Telegram Chat ID</td>
+</tr>
+</tbody></table>
+<p>README 的 Chat ID 获取方法是向 <code>@userinfobot</code> 发送消息，让它返回你的 Chat ID。[2]</p>
+<p>通知中对域名做了打码，但<strong>打码不等于匿名</strong>。邮箱、密码和 Token 仍然不要出现在公开日志或聊天截图里。</p>
+<h3 id="5-启用-Actions，先手动跑一次"><a href="#5-启用-Actions，先手动跑一次" class="headerlink" title="5. 启用 Actions，先手动跑一次"></a>5. 启用 Actions，先手动跑一次</h3><p>进入仓库的 <strong>Actions</strong> 标签页；如果出现启用提示，点击 <strong>I understand my workflows, go ahead and enable them</strong>。[2]</p>
+<p>随后选择 <strong>Ayrouter Daily Check-in</strong>，点击 <strong>Run workflow</strong>，先进行一次手动运行。这个 workflow 名称就是仓库里的写法，不是本文把 AgentRouter 拼错了。[2][5]</p>
+<p>运行后先看日志，再回目标站控制台确认实际到账和账号状态。原项目是逐账号顺序执行，单个账号失败不会阻断后面的账号；但只要存在失败，整体 Actions 会以退出码 <code>1</code> 结束，所以一次红色运行不一定代表所有账号都失败了。[2][3]</p>
+<div class="note warning modern"><p><strong>定时说明有一处不一致：<strong>README 写的是「每天北京时间 10:00」，但本文核对到的 <code>main</code> 分支 <code>.github/workflows/Checkin.yml</code> 实际为 <code>45 22 * * *</code>，对应北京时间</strong>每天 06:45</strong>。因此不要只看 README，以自己 Fork 下来的 workflow 配置为准。这里仅说明差异，没有替你修改定时任务。[2][5]</p>
+</div>
+
+<p>定时运行也不代表每天必定到账。网站改版、邮箱登录入口变化、代理失效或账号风控，都可能让自动化失效。</p>
+<h2 id="🔑-只有授权登录，邮箱和密码哪里来"><a href="#🔑-只有授权登录，邮箱和密码哪里来" class="headerlink" title="🔑 只有授权登录，邮箱和密码哪里来"></a>🔑 只有授权登录，邮箱和密码哪里来</h2><p>“我平时是点 GitHub &#x2F; 社区授权登录的，哪来的邮箱密码？”</p>
+<p>原项目给出的思路是：先授权登录，在目标站绑定邮箱，再通过邮箱的密码重置流程取得该站的登录凭据。[2]</p>
+<p>按 README 整理成步骤：[2]</p>
+<ol>
+<li>先用你已有的授权方式登录 AgentRouter。</li>
+<li>进入<strong>个人主页</strong>，找到邮箱绑定入口，绑定你能正常收信的邮箱。</li>
+<li>退出登录，切换到邮箱登录入口。</li>
+<li>首次没有密码时，使用<strong>忘记密码</strong>，按收到的邮件完成密码重置。</li>
+<li>确认能够手动通过邮箱、密码登录，再填写 <code>USERNAME</code> &#x2F; <code>PASSWORD</code> 或 <code>ACCOUNTS</code>。</li>
+</ol>
+<p>原 README 写的是重置邮件包含重置后的密码；实际也可能是重置链接，<strong>请按你当前收到的官方邮件操作</strong>，不要因为教程里的措辞而把验证码或重置链接发给别人。[2]</p>
+<p>授权入口和绑定邮箱后的登录方式，是两个不同阶段。不要拿 GitHub 或社区账号的密码替代目标站密码，也别把密码重置当成规避账号限制的办法。</p>
+<p>原仓库附有邮箱绑定截图，页面位置以它的现行说明和你看到的界面为准。本文不补画没有核验过的操作截图。[2]</p>
+<h2 id="🐟-我的评价：能省事，不适合闭眼多号"><a href="#🐟-我的评价：能省事，不适合闭眼多号" class="headerlink" title="🐟 我的评价：能省事，不适合闭眼多号"></a>🐟 我的评价：能省事，不适合闭眼多号</h2><p>以下是 <strong>Mutec 提供的逆向抓包判断和社群观察</strong>，由奈奈整理。不是官方风控规则，也不是对所有账号的统计结论。</p>
+<h3 id="固定-IP、随机领鸡蛋，是我的判断，不是安全公式"><a href="#固定-IP、随机领鸡蛋，是我的判断，不是安全公式" class="headerlink" title="固定 IP、随机领鸡蛋，是我的判断，不是安全公式"></a>固定 IP、随机领鸡蛋，是我的判断，不是安全公式</h3><p>从我的逆向抓包情况看，多账号涉及的不只是“填几个邮箱”。<strong>固定 IP、不要机械地定时领鸡蛋，以及多号对应多 IP</strong>，都是我认为需要考虑的点。</p>
+<p>但这里说的是风险判断，不是“这样做就能过风控”的教程。每天到点一排账号一起领鸡蛋，行为规律太明显，我认为仍然容易被检测。</p>
+<p>脚本里有账号之间的随机间隔，但账号间隔和每天运行时间随机，是两回事；代码里的这段间隔不能证明它能避免风控。[3]</p>
+<p>更关键的是：<strong>我目前不知道同 IP 多账号使用会不会黑号，也没有证据证明多号多 IP 就不会黑号。</strong> 不能把网络隔离当作平台许可。</p>
+<h3 id="多账号白嫖，有一定封号风险"><a href="#多账号白嫖，有一定封号风险" class="headerlink" title="多账号白嫖，有一定封号风险"></a>多账号白嫖，有一定封号风险</h3><p>我的建议很直接：<strong>不要拿重要账号批量试。</strong></p>
+<p>多账号领福利是否违反规则、会触发什么限制，得看平台实际政策。我认为这种用法有一定封号风险，但无法把某次封号准确归因到这个脚本。</p>
+<p>关于账号成本，我目前掌握的资料里，AgentRouter 的授权接入主要是 <strong>GitHub</strong> 和 <strong>LinuxDB</strong>。GitHub 注册相对简单；LinuxDB 社区注册则可能涉及邀请，或者 GitHub <strong>五年以上老号</strong>等门槛（LinuxDB注册看这里：<a href="https://muytec.github.io//2026/11/07/note0007%EF%BC%89%EF%BC%8C%E8%B4%A6%E5%8F%B7%E7%9C%9F%E6%B2%A1%E4%BA%86%EF%BC%8C%E9%87%8D%E6%96%B0%E8%8E%B7%E5%BE%97%E4%BD%BF%E7%94%A8%E8%B5%84%E6%A0%BC%E5%B9%B6%E4%B8%8D%E8%BD%BB%E6%9D%BE%E3%80%82">https://muytec.github.io//2026/11/07/note0007），账号真没了，重新获得使用资格并不轻松。</a></p>
+<div class="note warning modern"><p>上面保留了原资料中的 <strong>LinuxDB</strong> 名称和注册门槛描述，<strong>尚未核验其现行官方规则</strong>。具体社区名称、可用登录入口、邀请与老号条件，都以实际官网页面为准。这里想强调的是：账号资格有成本，不要为了几颗鸡蛋赌掉重要账号。</p>
+</div>
+
+<h3 id="probation-不是“等几天就一定恢复”"><a href="#probation-不是“等几天就一定恢复”" class="headerlink" title="probation 不是“等几天就一定恢复”"></a>probation 不是“等几天就一定恢复”</h3><p>按我此前了解到的官方说法，被拉入 <code>probation</code> 用户组后，正常使用有机会恢复账号信誉。<strong>这里转述的是我的了解，本文没有取得可核验的现行公告，不能承诺何时恢复。</strong></p>
+<p>但我在社群里看到的不少反馈并不乐观：有的用户长期留在这个组里，基本就是抱着“等封号”的心态；申诉也没有拿到有效结果。</p>
+<p>这是个人观察和社群反馈，不能直接推出“进组必封”或“所有申诉都没用”。不过对我来说，已经足够让我不愿意把重要账号压在这上面了。</p>
+<p>还要把几个词分清楚：<strong>进入 <code>probation</code>、信誉下降、功能限制、最终封号，不是同一个状态</strong>。不能看到分组就断言封号，也不能因为暂时还可用，就说账号安全。</p>
+<p class='p red'>- 多账号白嫖有风险；固定 IP、随机间隔和代理都不是免封保证</p>
+<p class='p green'>+ 先确认平台规则与账号成本；出现风控提醒就停止自动化</p>
+
+<h2 id="🛠️-跑失败了，先看哪里"><a href="#🛠️-跑失败了，先看哪里" class="headerlink" title="🛠️ 跑失败了，先看哪里"></a>🛠️ 跑失败了，先看哪里</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>建议先检查什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>提示没有登录凭据</td>
+<td>Secrets 名称是否完全一致，账号是否能手动登录</td>
+</tr>
+<tr>
+<td>某一行账号不执行</td>
+<td><code>ACCOUNTS</code> 是否正确换行，是否缺少邮箱、密码或分隔符</td>
+</tr>
+<tr>
+<td>卡在登录 &#x2F; WAF 验证</td>
+<td>当前网站是否有验证或限流提示；先停止，不要反复撞</td>
+</tr>
+<tr>
+<td>Actions 标红但有成功通知</td>
+<td>看逐账号结果，可能是部分账号失败，而非全部失败</td>
+</tr>
+<tr>
+<td>脚本说成功但额度没变</td>
+<td>到控制台核实，不把登录成功直接当作到账证明</td>
+</tr>
+<tr>
+<td>账号进入 probation 或被限制</td>
+<td>先停用自动化，按平台渠道核实；别继续多号试探</td>
+</tr>
+</tbody></table>
+<p>其中凭据、账号解析和整体退出码的行为可从 README 与代码核对；其余是本文的排查建议，不是保证解决的方法。[2][3]</p>
+<h2 id="⚠️-免责声明"><a href="#⚠️-免责声明" class="headerlink" title="⚠️ 免责声明"></a>⚠️ 免责声明</h2><ul>
+<li>本文是第三方开源脚本的转载整理，不代表 AgentRouter 官方，也不构成对脚本安全性或长期可用性的背书。</li>
+<li><strong>是否会黑号、哪些行为会触发风控、同 IP 多号是否会被关联，目前都不能确定。</strong> 本文不作“稳领”“免封”“必恢复”等承诺。</li>
+<li>仅在拥有账号使用权、且平台明确允许的范围内使用。不要批量注册、转售账号、滥用公益额度或规避平台限制。</li>
+<li>将账号凭据交给第三方代码、Actions、节点订阅或公开代理前，需要自行评估信任边界；Secrets 的存在不等于代码不会接触这些值。</li>
+<li>文中的逆向抓包判断、注册门槛信息、<code>probation</code> 经历和社群反馈，都有各自的观察范围，不能代替现行官方政策。</li>
+<li>账号限制、封禁、凭据泄露及相关损失不会因为读过教程就消失，本文与脚本作者都没有承诺代为恢复账号。<strong>不愿承担这些风险，就不要启用。</strong></li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>脚本的价值很明确：把重复登录交给自动化。原项目也把多账号、代理兜底和通知这些功能凑齐了。[2]</p>
+<p>但我的结论不是“赶紧多号冲”，而是：<strong>它可以作为脚本项目看看，多账号白嫖还是要慎用。</strong></p>
+<p>能少点几下当然开心，可如果省下的是半分钟，赔进去的是一个难拿的账号，那这只小鱼宁愿自己游过去点一下。</p>
+<p>项目 README 标注 <strong>MIT License</strong>，并感谢 <strong>CharlesPikachu&#x2F;freeproxy</strong> 提供的公开代理数据。脚本许可与平台对自动化、账号和福利的规则是两回事；具体授权以仓库实际许可证文件和作者声明为准。[2]</p>
+<h2 id="Sources"><a href="#Sources" class="headerlink" title="Sources"></a>Sources</h2><p>[2] <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/yslailo/AgentRouter-Check-in/main/README.md">https://raw.githubusercontent.com/yslailo/AgentRouter-Check-in/main/README.md</a> — 项目 README：功能、Secrets 与邮箱绑定说明<br>[3] <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/yslailo/AgentRouter-Check-in/main/app.py">https://raw.githubusercontent.com/yslailo/AgentRouter-Check-in/main/app.py</a> — app.py：账号解析与顺序执行逻辑<br>[5] <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/yslailo/AgentRouter-Check-in/main/.github/workflows/Checkin.yml">https://raw.githubusercontent.com/yslailo/AgentRouter-Check-in/main/.github/workflows/Checkin.yml</a> — Checkin.yml：工作流名称与实际定时配置</p>
+<hr>
+<p>转载至：<a target="_blank" rel="noopener" href="https://github.com/yslailo/AgentRouter-Check-in">github.com&#x2F;yslailo&#x2F;AgentRouter-Check-in</a></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">yslailo</div><div class="post-copyright__author_desc">寻仙觅机，飞升可期</div></div><div class="post-copyright__post__info"><a class="post-copyright__reprint" title="该文章为转载文章，注意版权协议" target="_blank" rel="noopener" href="https://github.com/yslailo/AgentRouter-Check-in">转载</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://github.com/yslailo/AgentRouter-Check-in')">AgentRouter 自动签到脚本推荐</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://github.com/yslailo/AgentRouter-Check-in"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=AgentRouter 自动签到脚本推荐&amp;url=https://github.com/yslailo/AgentRouter-Check-in&amp;pic=/2026/11/07/software0003/title.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文为项目 README 转载整理。脚本原作者 yslailo，文字由奈奈编写，个人评价来自 Mutec。项目 README 标注 MIT License；账号风险与平台规则请以实际情况为准。</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Github%E9%A1%B9%E7%9B%AE/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Github项目<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/%E8%84%9A%E6%9C%AC/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>脚本<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/AgentRouter/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>AgentRouter<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/GitHub-Actions/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>GitHub Actions<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="/2026/11/07/note0007/title.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/11/06/AIAPI/agentrouter/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/11/06/AIAPI/agentrouter/title.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">AgentRouter 公益 API 中转站：注册、国内镜像与 Codex 排错</div></div></a></div><div class="next-post pull-right"><a href="/2026/11/07/note0007/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/11/07/note0007/title.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LinuxDB 注册教程：三种注册方法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2025/11/13/software0001/" title="一款多平台视频解析桌面小工具"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2025/11/13/software0001/title.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-11-13</div><div class="title">一款多平台视频解析桌面小工具</div></div></a></div><div><a href="/2025/12/11/software0002/" title="薅羊毛神器：利用插件刷取 Microsoft Rewards 积分"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2025/12/11/software0002/title.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-12-11</div><div class="title">薅羊毛神器：利用插件刷取 Microsoft Rewards 积分</div></div></a></div><div><a href="/2026/11/06/AIAPI/agentrouter/" title="AgentRouter 公益 API 中转站：注册、国内镜像与 Codex 排错"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/11/06/AIAPI/agentrouter/title.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-11-06</div><div class="title">AgentRouter 公益 API 中转站：注册、国内镜像与 Codex 排错</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/meme/avatar_meme.gif" alt="status"/></div></div><div class="author-info__description"><div style="display:flex;align-items:center;justify-content:center;margin:0.6rem 0"><div style="writing-mode:vertical-rl;color:white;font-size:14px;font-weight:bold;padding-right:8px">就这么点了</div><div style="width:60%;max-width:220px"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/avatarback.jpg" alt="头像" style="width:100%;border-radius:50%;object-fit:cover;aspect-ratio:1/1;border:5px solid white;box-shadow:0 0 10px rgba(255,255,255,0.4)"></div><div style="writing-mode:vertical-rl;color:white;font-size:18px;font-weight:bold;padding-left:8px">你还看！</div></div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Mutec</h1><div class="author-info__desc">寻仙觅机，飞升可期</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Muytec" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/37690823" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B0-%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text">🧰 项目地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E5%AE%83%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">⚙️ 它能做什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">🚀 怎么配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Fork-%E4%BB%93%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">1. Fork 仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B7%BB%E5%8A%A0-Secrets"><span class="toc-number">3.2.</span> <span class="toc-text">2. 添加 Secrets</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E5%8D%95%E8%B4%A6%E5%8F%B7"><span class="toc-number">3.2.1.</span> <span class="toc-text">方式一：单账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E5%A4%9A%E8%B4%A6%E5%8F%B7-%E5%A4%9A%E7%AB%99%E7%82%B9"><span class="toc-number">3.2.2.</span> <span class="toc-text">方式二：多账号 &#x2F; 多站点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%8F%AF%E9%80%89%EF%BC%8C%E4%BD%86%E4%B8%8D%E6%98%AF%E5%85%8D%E5%B0%81%E6%8A%A4%E7%AC%A6"><span class="toc-number">3.3.</span> <span class="toc-text">3. 代理配置：可选，但不是免封护符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Telegram-%E9%80%9A%E7%9F%A5%EF%BC%9A%E4%B8%8D%E9%9C%80%E8%A6%81%E5%B0%B1%E4%B8%8D%E9%85%8D"><span class="toc-number">3.4.</span> <span class="toc-text">4. Telegram 通知：不需要就不配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%90%AF%E7%94%A8-Actions%EF%BC%8C%E5%85%88%E6%89%8B%E5%8A%A8%E8%B7%91%E4%B8%80%E6%AC%A1"><span class="toc-number">3.5.</span> <span class="toc-text">5. 启用 Actions，先手动跑一次</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%91-%E5%8F%AA%E6%9C%89%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95%EF%BC%8C%E9%82%AE%E7%AE%B1%E5%92%8C%E5%AF%86%E7%A0%81%E5%93%AA%E9%87%8C%E6%9D%A5"><span class="toc-number">4.</span> <span class="toc-text">🔑 只有授权登录，邮箱和密码哪里来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%9F-%E6%88%91%E7%9A%84%E8%AF%84%E4%BB%B7%EF%BC%9A%E8%83%BD%E7%9C%81%E4%BA%8B%EF%BC%8C%E4%B8%8D%E9%80%82%E5%90%88%E9%97%AD%E7%9C%BC%E5%A4%9A%E5%8F%B7"><span class="toc-number">5.</span> <span class="toc-text">🐟 我的评价：能省事，不适合闭眼多号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A-IP%E3%80%81%E9%9A%8F%E6%9C%BA%E9%A2%86%E9%B8%A1%E8%9B%8B%EF%BC%8C%E6%98%AF%E6%88%91%E7%9A%84%E5%88%A4%E6%96%AD%EF%BC%8C%E4%B8%8D%E6%98%AF%E5%AE%89%E5%85%A8%E5%85%AC%E5%BC%8F"><span class="toc-number">5.1.</span> <span class="toc-text">固定 IP、随机领鸡蛋，是我的判断，不是安全公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%B4%A6%E5%8F%B7%E7%99%BD%E5%AB%96%EF%BC%8C%E6%9C%89%E4%B8%80%E5%AE%9A%E5%B0%81%E5%8F%B7%E9%A3%8E%E9%99%A9"><span class="toc-number">5.2.</span> <span class="toc-text">多账号白嫖，有一定封号风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#probation-%E4%B8%8D%E6%98%AF%E2%80%9C%E7%AD%89%E5%87%A0%E5%A4%A9%E5%B0%B1%E4%B8%80%E5%AE%9A%E6%81%A2%E5%A4%8D%E2%80%9D"><span class="toc-number">5.3.</span> <span class="toc-text">probation 不是“等几天就一定恢复”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E8%B7%91%E5%A4%B1%E8%B4%A5%E4%BA%86%EF%BC%8C%E5%85%88%E7%9C%8B%E5%93%AA%E9%87%8C"><span class="toc-number">6.</span> <span class="toc-text">🛠️ 跑失败了，先看哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%A0%EF%B8%8F-%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E"><span class="toc-number">7.</span> <span class="toc-text">⚠️ 免责声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">8.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources"><span class="toc-number">9.</span> <span class="toc-text">Sources</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/11/07/note0007/" title="LinuxDB 注册教程：三种注册方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/11/07/note0007/title.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LinuxDB 注册教程：三种注册方法"/></a><div class="content"><a class="title" href="/2026/11/07/note0007/" title="LinuxDB 注册教程：三种注册方法">LinuxDB 注册教程：三种注册方法</a><time datetime="2026-11-07T06:54:02.000Z" title="发表于 2026-11-07 14:54:02">2026-11-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/11/07/software0003/" title="AgentRouter 自动签到脚本推荐"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/11/07/software0003/title.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AgentRouter 自动签到脚本推荐"/></a><div class="content"><a class="title" href="/2026/11/07/software0003/" title="AgentRouter 自动签到脚本推荐">AgentRouter 自动签到脚本推荐</a><time datetime="2026-11-07T06:20:04.000Z" title="发表于 2026-11-07 14:20:04">2026-11-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/11/06/AIAPI/agentrouter/" title="AgentRouter 公益 API 中转站：注册、国内镜像与 Codex 排错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/11/06/AIAPI/agentrouter/title.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AgentRouter 公益 API 中转站：注册、国内镜像与 Codex 排错"/></a><div class="content"><a class="title" href="/2026/11/06/AIAPI/agentrouter/" title="AgentRouter 公益 API 中转站：注册、国内镜像与 Codex 排错">AgentRouter 公益 API 中转站：注册、国内镜像与 Codex 排错</a><time datetime="2026-11-06T14:10:02.000Z" title="发表于 2026-11-06 22:10:02">2026-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/11/02/note0006/" title="Claude 账号防封指南：逆向拆解积分制封号机制"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/11/02/note0006/title.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Claude 账号防封指南：逆向拆解积分制封号机制"/></a><div class="content"><a class="title" href="/2026/11/02/note0006/" title="Claude 账号防封指南：逆向拆解积分制封号机制">Claude 账号防封指南：逆向拆解积分制封号机制</a><time datetime="2026-11-02T15:30:00.000Z" title="发表于 2026-11-02 23:30:00">2026-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/17/note0005/" title="2026 Gemini3Pro 12个月白嫖"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2026/07/17/note0005/title.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026 Gemini3Pro 12个月白嫖"/></a><div class="content"><a class="title" href="/2026/07/17/note0005/" title="2026 Gemini3Pro 12个月白嫖">2026 Gemini3Pro 12个月白嫖</a><time datetime="2026-07-17T08:13:36.000Z" title="发表于 2026-07-17 16:13:36">2026-07-17</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/2535093954@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" href="/null" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" href="/null" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/avatar.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/Muytec" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/37690823" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" href="/null" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div class="copyright">&copy;2023 - 2026 By Mutec</div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/小研上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">联系我</div><div class="footer-links"><a class="footer-item" title="QQ群" target="_blank" rel="noopener" href="https://qun.qq.com/universal-share/share?ac=1&amp;authKey=MNLpMrE4p6VsIwOHzGmDeKHYsGmwUXM2oFybC7%2FE9IHviLKB76KtrFKf%2BXnV0M9G&amp;busi_data=eyJncm91cENvZGUiOiI4NTAzMjY5NzkiLCJ0b2tlbiI6IlJ5SEVCK3NBMk1FdjFzeG9IaTJvaDlJdzFjQWZpRjkzayszUS8ydE9ndkF5am0xSEJkSnZSZGZhSXFMZUl4VnUiLCJ1aW4iOiIyNTM1MDkzOTU0In0%3D&amp;data=qNLeOFNQ4QtrynfUc1fAKCkr6_mCHymUlGZzgwAFfOZFi3T0auDO_BLhzlRaIPrKQYDJeB0RY2248LMg-CAQAA&amp;svctype=4&amp;tempid=h5_group_info">QQ群</a><a class="footer-item" title="QQ" href="/null">QQ</a><a class="footer-item" title="其他" href="/null">其他</a></div></div><div class="footer-group"><div class="footer-title">网站</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" href="/null">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a></p></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">3</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://muytec.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">做点什么</div><div class="back-menu-list"><a class="back-menu-item" href="https://muytec.github.io/checkin/" title="打卡"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/check.ico" alt="打卡"/><span class="back-menu-item-text">打卡</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 圈子</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 工具</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/apis/"><i class="anzhiyufont anzhiyu-icon-cube faa-tada" style="font-size: 0.9em;"></i><span> 中转站</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/airports/"><i class="anzhiyufont anzhiyu-icon-plane faa-tada" style="font-size: 0.9em;"></i><span> 梯子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 留言</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/checkin/"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 打卡</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>4</sup></a><a href="/tags/API%E4%B8%AD%E8%BD%AC/" style="font-size: 0.88rem;">API中转<sup>1</sup></a><a href="/tags/AgentRouter/" style="font-size: 0.88rem;">AgentRouter<sup>2</sup></a><a href="/tags/Chrome%E6%89%A9%E5%B1%95/" style="font-size: 0.88rem;">Chrome扩展<sup>1</sup></a><a href="/tags/Claude/" style="font-size: 0.88rem;">Claude<sup>1</sup></a><a href="/tags/Codex/" style="font-size: 0.88rem;">Codex<sup>1</sup></a><a href="/tags/Germini/" style="font-size: 0.88rem;">Germini<sup>2</sup></a><a href="/tags/GitHub/" style="font-size: 0.88rem;">GitHub<sup>1</sup></a><a href="/tags/GitHub-Actions/" style="font-size: 0.88rem;">GitHub Actions<sup>1</sup></a><a href="/tags/Github%E9%A1%B9%E7%9B%AE/" style="font-size: 0.88rem;">Github项目<sup>2</sup></a><a href="/tags/Google/" style="font-size: 0.88rem;">Google<sup>3</sup></a><a href="/tags/LinuxDB/" style="font-size: 0.88rem;">LinuxDB<sup>1</sup></a><a href="/tags/%E4%BB%A3%E7%90%86%E8%BD%AF%E4%BB%B6/" style="font-size: 0.88rem;">代理软件<sup>1</sup></a><a href="/tags/%E5%BD%B1%E9%9F%B3%E6%92%AD%E6%94%BE/" style="font-size: 0.88rem;">影音播放<sup>1</sup></a><a href="/tags/%E5%BE%AE%E8%BD%AF/" style="font-size: 0.88rem;">微软<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%9C%BA/" style="font-size: 0.88rem;">机场<sup>1</sup></a><a href="/tags/%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" style="font-size: 0.88rem;">注册教程<sup>1</sup></a><a href="/tags/%E7%83%AD%E9%97%A8/" style="font-size: 0.88rem;">热门<sup>2</sup></a><a href="/tags/%E7%99%BD%E5%AB%96/" style="font-size: 0.88rem;">白嫖<sup>2</sup></a><a href="/tags/%E7%B2%BE%E9%80%89/" style="font-size: 0.88rem;">精选<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/" style="font-size: 0.88rem;">网络代理<sup>1</sup></a><a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 0.88rem;">脚本<sup>2</sup></a><a href="/tags/%E8%B4%A6%E5%8F%B7%E6%8A%80%E5%B7%A7/" style="font-size: 0.88rem;">账号技巧<sup>1</sup></a><a href="/tags/%E8%B4%A6%E6%88%B7%E9%97%AE%E9%A2%98/" style="font-size: 0.88rem;">账户问题<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><a id="switch-commentBarrage" href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕"><i class="anzhiyufont anzhiyu-icon-danmu"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("03/12/2023 10:41:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By 安知鱼 V1.7.1",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Mutec 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("03/12/2023 10:41:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "/img/下班啦嘿嘿嘿.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://muytecbolgcomments.vercel.app/',
+      region: '日本',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://muytecbolgcomments.vercel.app/',
+      region: '日本',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"><script async src="/js/anzhiyu/comment_barrage.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://muytecbolgcomments.vercel.app/',
+        region: '日本',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.44/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

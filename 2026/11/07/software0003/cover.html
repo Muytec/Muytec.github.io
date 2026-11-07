@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1200, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>AgentRouter 自动签到脚本 · 博客封面</title>
+  <style>
+    :root {
+      --canvas-width: 1200px;
+      --canvas-height: 630px;
+      --background: #252629;
+      --headline: #ffffff;
+      --secondary: #d4d5da;
+      --credit: #b4b5bd;
+      --label-background: #d9d3e2;
+      --label-ink: #292630;
+      --inset: 96px;
+      --font-latin: "Segoe UI", "Microsoft YaHei", sans-serif;
+      --font-chinese: "Microsoft YaHei", "Segoe UI", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      width: var(--canvas-width);
+      height: var(--canvas-height);
+      margin: 0;
+      overflow: hidden;
+      background: var(--background);
+    }
+
+    body {
+      font-family: var(--font-latin);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .cover {
+      position: relative;
+      width: var(--canvas-width);
+      height: var(--canvas-height);
+      overflow: hidden;
+      background: var(--background);
+      color: var(--headline);
+    }
+
+    .category {
+      position: absolute;
+      top: 88px;
+      right: var(--inset);
+      margin: 0;
+      padding: 10px 18px;
+      border-radius: 4px;
+      background: var(--label-background);
+      color: var(--label-ink);
+      font-family: var(--font-chinese);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+
+    .headline {
+      position: absolute;
+      top: 190px;
+      left: var(--inset);
+      margin: 0;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .title-product {
+      display: block;
+      font-family: var(--font-latin);
+      font-size: 100px;
+      line-height: 108px;
+      letter-spacing: -2px;
+      white-space: nowrap;
+    }
+
+    .title-subject {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--font-chinese);
+      font-size: 82px;
+      line-height: 105px;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .scope {
+      position: absolute;
+      top: 444px;
+      left: var(--inset);
+      margin: 0;
+      color: var(--secondary);
+      font-size: 27px;
+      font-weight: 400;
+      line-height: 38px;
+      white-space: nowrap;
+    }
+
+    .credit {
+      position: absolute;
+      top: 523px;
+      left: var(--inset);
+      margin: 0;
+      color: var(--credit);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 27px;
+      white-space: nowrap;
+    }
+
+    @page { size: 1200px 630px; margin: 0; }
+    @media print {
+      html, body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <main class="cover" aria-label="AgentRouter 自动签到脚本博客封面">
+    <p class="category">脚本推荐</p>
+    <h1 class="headline">
+      <span class="title-product">AgentRouter</span>
+      <span class="title-subject">自动签到脚本</span>
+    </h1>
+    <p class="scope">GitHub Actions · 登录签到 · 风险提醒</p>
+    <p class="credit">原项目 yslailo · 整理 奈奈</p>
+  </main>
+</body>
+</html>
