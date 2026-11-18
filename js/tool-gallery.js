@@ -80,6 +80,9 @@
       // 月均价格排序
       monthly_asc: function (a, b) { return num(a.dataset.monthlyPrice, Infinity) - num(b.dataset.monthlyPrice, Infinity); },
       monthly_desc: function (a, b) { return num(b.dataset.monthlyPrice, -Infinity) - num(a.dataset.monthlyPrice, -Infinity); },
+      // API官网倍率排序
+      rate_asc: function (a, b) { return num(a.dataset.rateNum, Infinity) - num(b.dataset.rateNum, Infinity); },
+      rate_desc: function (a, b) { return num(b.dataset.rateNum, -Infinity) - num(a.dataset.rateNum, -Infinity); },
       price_asc: function (a, b) { return num(a.dataset.price, Infinity) - num(b.dataset.price, Infinity); },
       price_desc: function (a, b) { return num(b.dataset.price, -Infinity) - num(a.dataset.price, -Infinity); },
       usage: function (a, b) { return num(a.dataset.usageRank, 99) - num(b.dataset.usageRank, 99) || sorters.default(a, b); },
@@ -97,6 +100,7 @@
       th.addEventListener('click', function () {
         var s = th.dataset.sort;
         if (s === 'price') s = sortSel.value === 'price_asc' ? 'price_desc' : 'price_asc';
+        if (s === 'rate_asc') s = sortSel.value === 'rate_asc' ? 'rate_desc' : 'rate_asc';
         // 月均 / 百G单价 列：再次点击切换升降序
         if (s === 'monthly_asc') s = sortSel.value === 'monthly_asc' ? 'monthly_desc' : 'monthly_asc';
         if (s === 'price_per100g_asc') s = sortSel.value === 'price_per100g_asc' ? 'price_per100g_desc' : 'price_per100g_asc';
